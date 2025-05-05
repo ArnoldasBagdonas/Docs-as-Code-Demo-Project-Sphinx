@@ -58,7 +58,7 @@ Then open the generated documentation in your browser: [build/html/index.html](b
 From the `root` directory:
 
 ```
-make hlatexpdf
+make latexpdf
 ```
 Then open the generated documentation in your browser: [build/latex/refmanual.pdf](build/latex/refmanual.pdf)
 
