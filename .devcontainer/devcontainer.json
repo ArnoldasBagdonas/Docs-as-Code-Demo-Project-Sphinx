@@ -1,0 +1,48 @@
+// For format details, see https://aka.ms/devcontainer.json. 
+
+{
+    "name": "Sphinx Neeeds Environment",
+    "build": {
+        "dockerfile": "Dockerfile"
+    },
+	"customizations":{
+		"vscode":{
+			"extensions": [
+				//"ms-vscode.cmake-tools",
+				//"ms-vscode.cpptools",
+				//"twxs.cmake",
+				//"ms-vscode.cpptools-extension-pack",
+				//"vector-of-bool.cmake-tools-helper",
+				//"jeff-hykin.better-cpp-syntax",
+				"mhutchie.git-graph",
+				"hediet.vscode-drawio",
+				"ms-python.python",
+				"littlefoxteam.vscode-python-test-adapter",
+				"useblocks.ubcode",
+				"streetsidesoftware.code-spell-checker",
+				//"alefragnani.bookmarks"
+			], 
+			"settings": {
+				"cmake.configureSettings": {
+					"CMAKE_BUILD_TYPE": "Debug"
+				}
+			}
+		}
+	},
+
+	// To attach a physical USB device, follow the instructions at:
+	// https://learn.microsoft.com/en-us/windows/wsl/connect-usb
+    "runArgs": [
+        "--privileged",
+        "--device=/dev/bus/usb:/dev/bus/usb"
+    ],
+    "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind",
+    "workspaceFolder": "/workspace",
+    "postCreateCommand": "git config --global --add safe.directory /workspace",
+    
+	// Uncomment the following line to run the container as the 'vscode' user. 
+    // Note: The USB device remains owned by root:root with crw------- permissions inside the container. 
+    // Even though the 'vscode' user is part of the root group, these permissions prevent the 'vscode' user from accessing the USB device.
+    
+	"remoteUser": "vscode" /* Running as 'root' is not a good practice unless you need to use attached USB devices*/
+}
