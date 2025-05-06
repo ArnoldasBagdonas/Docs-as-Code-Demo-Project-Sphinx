@@ -105,8 +105,27 @@ roadmap.
   - Adoption of **Arduino-compatible ecosystems** (e.g., Teensy, STM32duino, or Raspberry Pi Pico)
     to reduce development overhead and leverage robust community libraries, tooling, and rapid
     prototyping support.
-  - Adoption of **cross-platform desktop frameworks** (e.g., Electron, Qt, or .NET MAUI) enabling maintainable GUIs.
-  - Integration of **serial protocols with EEPROM-read automation** to streamline production processes.
+
+  +-------------------+-----------------------------------------+-----------------------------------------+
+  | Platform          | Strengths                               | Limitations                             |
+  +-------------------+-----------------------------------------+-----------------------------------------+
+  | Arduino           | Educational projects, prototyping       | Toolchain not suitable for              |
+  |                   | vast libraries                          | robust production workflows             |
+  +-------------------+-----------------------------------------+-----------------------------------------+
+  | Teensy (PJRC)     | Powerful ARM cores, real-time           | A niche but trusted choice              |
+  |                   | audio, USB native support               | in precise control                      |
+  +-------------------+-----------------------------------------+-----------------------------------------+
+  | STM32duino        | Powerful MCU family, full compatibility |                                         |
+  |                   | with widely available ST boards         |                                         |
+  +-------------------+-----------------------------------------+-----------------------------------------+
+  | ESP32 (Espressif) | Dominates the Wi-Fi-connected           | Some ESP32 modules are                  |
+  |                   | microcontroller market                  | not pre-certified                       |
+  +-------------------+-----------------------------------------+-----------------------------------------+
+  | Raspberry Pi Pico | Educational projects, simple            | SDK is powerful but less mature than    |
+  |                   | automation, low cost                    | STM32 ecosystem (CubeMX, STM32CubeIDE)  |
+  +-------------------+-----------------------------------------+-----------------------------------------+
+
+  - Adoption of **cross-platform desktop frameworks** (e.g., Electron or .NET MAUI) enabling maintainable GUIs.
 
 
 - **Ecosystem Changes**:
@@ -120,7 +139,7 @@ roadmap.
 
   - Rising demand for **customizable, multi-channel control systems** in photobiology, diagnostics, and material testing.
   - Emphasis on **data traceability**, **calibration standards**, and **firmware update mechanisms**.
-  - Increasing user expectation for modern GUI tools, even for low-volume hardware.
+  - Increasing user expectation for **modern GUI tools**, even for low-volume hardware.
 
 
 - **Opportunities**:
@@ -148,8 +167,7 @@ configuration complexity, lack of workflow integration, and inflexible hardware 
 
   - Setup processes often require multiple software tools or manual programming.
   - Calibration/config data must often be entered by hand, risking human error.
-  - Devices lack audible/visual safety cues in shared lab environments.
-
+ 
 
 - **Inefficiencies**:
 
@@ -164,4 +182,4 @@ configuration complexity, lack of workflow integration, and inflexible hardware 
     and ergonomic hardware controls.
   - Dynamic stage tuning, audible feedback, full waveform control, and support for headless or
     manual operation.
-  - Production-friendly design enabling seamless flashing of EEPROM data without specialized tools.
+  - Production-friendly design without specialized tools.
