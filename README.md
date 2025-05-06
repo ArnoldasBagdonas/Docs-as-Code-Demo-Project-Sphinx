@@ -62,6 +62,13 @@ make latexpdf
 ```
 Then open the generated documentation in your browser: [build/latex/refmanual.pdf](build/latex/refmanual.pdf)
 
+## 📊 Estimate Git Commit Hours
+
+To get an estimate of time spent on the project based on Git history:
+```
+make latexpdf
+```
+This runs [git-hours](https://pypi.org/project/git-hours/) using default settings.
 
 ## ⚙️ Build & Run
 
