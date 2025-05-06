@@ -15,3 +15,4 @@ pytest
 # sphinx-test-reports functionality not as expected, skip it!
 # sphinx-test-reports 
 sphinx-jsonschema
+git-hours
