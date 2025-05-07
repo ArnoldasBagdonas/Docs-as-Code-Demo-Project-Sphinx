@@ -13,6 +13,7 @@ Welcome to the documentation!
    01_overview
    02_requirements
    03_specifications
-   04_implementation
-   05_testing
-   06_reports
+   04_architecture
+   05_implementation
+   06_testing
+   07_reports
