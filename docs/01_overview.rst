@@ -1,4 +1,4 @@
-Project Overview
+Overview
 ========================================================================================
 
 **Quadled Controller**
@@ -7,33 +7,64 @@ Project Overview
 
 **Project Goals**:
 
-- Set SMART Project Goals: Use Specific, Measurable, Achievable, Relevant, Time-bound
-  (SMART) goals.
+- The solution in the scope is a tabletop LED Controller, which is used in lab environments
+  and controls the LED panels of various wavelengths connected to it over a serial interface.
+  The device's core functionality is light emission control and dozing.
 
-- For example: Achieve 99.9% uptime for 100,000 simultaneous users within the first six months.
+- The Client plans to introduce a new 4-channel Controller device to the current product
+  line following the demand for new functionality from their Clients. This device will be
+  an upgrade to the current single-channel LED controller by allowing the user to use 4 end
+  devices (LED panels) simultaneously and control them via an improved user interface.
+  In addition, this device will allow users to easily select their desired outputs and
+  control the system from a display screen with analog buttons.
+
+- The scope of the project is divided into two streams:
+
+  - **LED Controller**
+  
+  - **Desktop application**
+
+- No source code or design files of the exisitng solution are available, therefore the
+  solution has to be developed from scratch.
+
+- The Client is seeking a highly qualified and reliable partner committed to delivering the project with deep experience in the following solution areas:
+  
+  - **Hardware design**
+  
+  - **Firmware development**
+  
+  - **Desktop software development**
+
 
 **Release notes**: 
 
 - **1.0.0**: The initial release version of the project, to be tracked and maintained
   through a version control system to ensure smooth iterative improvements and bug fixes.
 
-**Stakeholders**:
-
-- **Product Owner**: Acts as the voice of the customer, setting the product vision and
-  prioritizing features.
-
-- **Development Team**: Focuses on technical implementation with adherence to industry
-  best practices like CI/CD pipelines, test-driven development, and security compliance.
-
-- **QA Team**: Conducts thorough functional, performance, and security testing, ensuring
-  the platform meets or exceeds defined standards before release.
-
-- **End Users**: Continuously gather user feedback post-release through surveys, analytics,
-  and A/B testing.
 
 .. raw:: latex
   
    \newpage
+
+New Tabletop LED Controller Concept
+----------------------------------------------------------------------------------------
+
+The LED Controller is envisioned as a device that will drive up to four LED panels
+simultaneously and provide control over the process by adjusting the waveform, frequency,
+output power, and operating time. The solution will have a dedicated control panel (Display + buttons)
+with controls for each of the four channels, allowing the operator to adjust operating and
+display settings. The Device will also support headless operation so that the device can be
+controlled from other devices by communication over the protocol already used by other devices
+in the Client's lineup.
+
+.. image:: _static/images/newconcept.png
+  :width: 800
+  :align: center
+  :alt: Concept
+
+**Note**: In the scope of this stream, the Contactor shall focus on hardware development
+(Schematic and PCB design), while the Client will be responsible for industrial and
+mechanical design activities.
 
 
 State-of-the-Art Analysis
