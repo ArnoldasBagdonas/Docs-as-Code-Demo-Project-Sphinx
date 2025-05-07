@@ -24,6 +24,9 @@ WORKDIR /plantuml
 # Download PlantUML JAR
 RUN wget https://netcologne.dl.sourceforge.net/project/plantuml/plantuml.jar
 
+# Force Java into headless mode to fix PlantUML AWT error
+ENV _JAVA_OPTIONS="-Djava.awt.headless=true"
+
 # Create an alias for running PlantUML
 RUN echo 'alias plantuml="java -jar /plantuml/plantuml.jar"' >> ~/.bashrc
 
