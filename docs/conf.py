@@ -100,17 +100,18 @@ plantuml = 'java -jar /plantuml/plantuml.jar'
 
 
 # Define own need types
-
-needs_types = [dict(directive="req", title="Requirement", prefix="R_", color="#BFD8D2", style="node"),
-               dict(directive="spec", title="Specification", prefix="S_", color="#FEDCD2", style="node"),
-               dict(directive="impl", title="Implementation", prefix="I_", color="#DF744A", style="node"),
-               dict(directive="test", title="Test Case", prefix="T_", color="#DCB239", style="node"),
-               # Kept for backwards compatibility
-               dict(directive="need", title="Need", prefix="N_", color="#9856a5", style="node")
-           ]
+needs_types = [
+    dict(directive="req", title="Requirement", prefix="R_", color="#BFD8D2", style="node"),    # Soft Aqua
+    dict(directive="arch", title="Architecture", prefix="A_", color="#C8E1E7", style="node"),  # Pale Blue-Gray
+    dict(directive="spec", title="Specification", prefix="S_", color="#FEDCD2", style="node"), # Peach Tint
+    dict(directive="impl", title="Implementation", prefix="I_", color="#DF744A", style="node"),# Burnt Coral
+    dict(directive="test", title="Test Case", prefix="T_", color="#DCB239", style="node"),     # Warm Yellow
+    # Kept for backwards compatibility
+    dict(directive="need", title="Need", prefix="N_", color="#9856a5", style="node")           # Soft Purple
+]
 
 # Define own options
-needs_extra_options = [ "integrity", "assignee" ]
+needs_extra_options = [ "integrity", "assignee", "open_questions" ]
 
 # Define own link types
 needs_extra_links = [
@@ -120,7 +121,8 @@ needs_extra_links = [
 
     { "option": "implements",
       "incoming": "is implemented by",
-      "outgoing": "implements" }]
+      "outgoing": "implements" },
+]
 
 needs_build_json = True
 
