@@ -1,0 +1,3 @@
+figure.facecolor : none
+axes.facecolor   : none
+savefig.transparent : True

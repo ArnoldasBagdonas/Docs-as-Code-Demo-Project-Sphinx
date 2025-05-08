@@ -18,7 +18,7 @@ reliability, and market eligibility.
 .. req:: CE Compliance
    :id: REQ_001
    :tags: compliance, ce
-   :status: open
+   :status: closed
 
    - The LED Controller shall comply with applicable **CE marking directives**,
      particularly:
@@ -34,7 +34,7 @@ reliability, and market eligibility.
 .. req:: UL Certification
    :id: REQ_002
    :tags: compliance, ul
-   :status: open
+   :status: closed
 
    - The LED Controller must meet **UL 8750** requirements for LED equipment
      used in lighting products.
@@ -42,6 +42,11 @@ reliability, and market eligibility.
      the U.S. and Canadian markets.
    - All critical components (e.g., power supply, housing, connectors) must
      also be UL-listed or -recognized where applicable.
+
+
+.. raw:: latex
+  
+   \newpage
 
 
 Functional Requirements
@@ -70,7 +75,7 @@ Define the core features and capabilities of the system.
 .. req:: Frequency Control
    :id: REQ_005
    :tags: controller, frequency
-   :status: open
+   :status: in progress
 
    - The controller shall support frequency adjustments between
      **0.001 Hz and 10,000 Hz** per channel.
@@ -79,7 +84,7 @@ Define the core features and capabilities of the system.
 .. req:: Output Power Control
    :id: REQ_006
    :tags: controller, power
-   :status: open
+   :status: in progress
 
    - The controller shall allow configurable **power output in five levels per channel**,
      supporting full-duty operation.
@@ -88,7 +93,7 @@ Define the core features and capabilities of the system.
 .. req:: Operating Time Control
    :id: REQ_007
    :tags: controller, timer
-   :status: open
+   :status: in progress
 
    - The controller shall support **count-up and countdown timers**, configurable
      in 1-second increments.
@@ -196,6 +201,11 @@ Define the core features and capabilities of the system.
    :status: open
 
    - The controller shall include a debug interface for **firmware updates via debugger**.
+
+
+.. raw:: latex
+  
+   \newpage
 
 
 Non-functional Requirements

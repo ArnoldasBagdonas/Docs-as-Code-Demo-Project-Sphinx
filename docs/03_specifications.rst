@@ -18,7 +18,7 @@ Communication Interfaces & Protocols
    :tags: interfaces, desktop, usb
    :links: REQ_017, REQ_020
    :status: review
-   :open_questions: Can this protocol support headless operation?
+   :open_questions: Headless operation lacks definition!
 
    - USB/UART interface between the desktop application and LED Controller. Interface with
      the software to set calibration parameters for the LED devices. Allows for configuring
@@ -57,7 +57,7 @@ Communication Interfaces & Protocols
    :tags: interfaces, headless
    :links: REQ_011
    :status: review
-   :open_questions: Should this reuse USB/UART or define a new protocol?
+   :open_questions: Headless operation lacks definition!
 
    - Unit must also be able to operate headless-ly by receiving serial commands (device control
      without display/buttons) from external devices communicating over the same Client-defined protocol
@@ -81,6 +81,7 @@ Hardware
 .. spec:: LED Controller (MCU) Specification
    :id: SPEC_005
    :tags: hardware, controller
+   :links: ARCH_001, SPEC_010
    :status: open
 
    - 4x I2C (dedicated bus per LED channel)
@@ -120,12 +121,17 @@ Hardware
    - **Note:** The Client will provide guidance as to where on the enclosure any buttons are to be
      located. It is assumed that the documentation of target control logic, user actions, and
      transitions will be provided by the Client.
-   
+
    - **Review Questions:**
 
      - Should we explore modern UX (e.g., [DIY haptic input knob: BLDC motor + round LCD](https://www.youtube.com/watch?v=ip641WmY4pA)) or
        prioritize industrial-grade components?
      
+     .. image:: _static/images/haptic_input_knob.png
+        :align: center
+        :alt: Logical View
+     
+
      - What are the ingress protection (IP) and durability requirements?
 
 

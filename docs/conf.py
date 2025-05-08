@@ -98,7 +98,6 @@ plantuml = 'java -jar /plantuml/plantuml.jar'
 
 # Sphinx-Needs
 
-
 # Define own need types
 needs_types = [
     dict(directive="req", title="Requirement", prefix="R_", color="#BFD8D2", style="node"),    # Soft Aqua
@@ -125,6 +124,11 @@ needs_extra_links = [
 ]
 
 needs_build_json = True
+
+# Graphviz
+
+graphviz_output_format = 'svg'
+graphviz_dot_args = ['-Gbgcolor=transparent']
 
 #breathe_default_members = ('members', 'undoc-members')
 #breathe_implementation_filename_extensions = ['.c', '.cc', '.cpp']
