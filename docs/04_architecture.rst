@@ -21,7 +21,7 @@ Describes functionality — what the system should do.
 .. arch:: Logical View - LED Controller
    :id: ARCH_001
    :tags: controller, interfaces, ui, hardware
-   :links: SPEC_001, SPEC_002, SPEC_003, SPEC_004, SPEC_007, SPEC_008, 
+   :links: ARCH_004, ARCH_005
    :status: review
    :open_questions: Headless operation lacks definition!
 
@@ -56,6 +56,7 @@ Describes software structure in terms of modules and components.
 .. arch:: Development View
    :id: ARCH_003
    :tags: actors,user
+   :links: ARCH_001
    :status: open
 
    
@@ -75,9 +76,10 @@ Process View
 Describes dynamic behavior, concurrency, and runtime performance.
 (Example: real-time tasks for LED control, UI input polling, serial communication)
 
-.. arch:: Process View
+.. arch:: Process View - LED Controller
    :id: ARCH_004
    :tags: actors,user
+   :links: REQ_003, SPEC_003, REQ_007, SPEC_007, SPEC_008, SPEC_009, SPEC_010, SPEC_011, ARCH_006
    :status: open
 
 
@@ -97,9 +99,10 @@ Physical View
 Describes the deployment — how components are mapped to hardware.
 (Example: mapping of firmware to MCU hardware, I2C buses to peripherals, power domains)
 
-.. arch:: Physical View
+.. arch:: Physical View - LED Controller
    :id: ARCH_005
    :tags: actors,user
+   :links: SPEC_006, SPEC_001, SPEC_002, SPEC_004, SPEC_012, REQ_001, REQ_002, SPEC_010
    :status: open
 
 
@@ -118,3 +121,13 @@ Scenarios
 ----------------------------------------------------------------------------------------
 Shows use cases or sequences that validate and illustrate the other views.
 (Example: sequence diagrams for "user presses power button" or "desktop app changes settings")
+
+
+.. arch:: LED Controller - Scenarios
+   :id: ARCH_006
+   :tags: actors,user
+   :status: open
+
+
+   TBD
+

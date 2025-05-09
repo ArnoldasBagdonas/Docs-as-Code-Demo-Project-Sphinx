@@ -39,7 +39,7 @@ Communication Interfaces & Protocols
 .. spec:: I2C Protocol Specification
    :id: SPEC_002
    :tags: interfaces, led, i2c
-   :links: REQ_018, REQ_020
+   :links: REQ_018, REQ_020, REQ_021
    :status: review
    :open_questions: Should each LED channel have a bus or share one with device addressing?
 
@@ -81,7 +81,7 @@ Hardware
 .. spec:: LED Controller (MCU) Specification
    :id: SPEC_005
    :tags: hardware, controller
-   :links: ARCH_001, SPEC_010
+   :links: ARCH_001
    :status: open
 
    - 4x I2C (dedicated bus per LED channel)
@@ -109,7 +109,7 @@ Hardware
 .. spec:: Controls/Buttons Specification
    :id: SPEC_007
    :tags: hardware, ui
-   :links: REQ_014
+   :links: REQ_014, REQ_015
    :status: review
    :open_questions: Should we prioritize modern UX or industrial-grade components?
 
@@ -213,8 +213,7 @@ Hardware
 .. spec:: Mechanical Specification
    :id: SPEC_012
    :tags: hardware, audio
-   :links: REQ_020
-   :status: review
+      :status: review
    :open_questions: Can we estimate space/dimensions for new components?
 
    - All components (main board, display module, power supplies) must fit within enclosure dimensions provided by the Client.

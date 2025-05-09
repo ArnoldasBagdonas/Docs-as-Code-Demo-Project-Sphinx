@@ -55,7 +55,7 @@ Functional Requirements
 Define the core features and capabilities of the system.
 
 
-.. req:: Multichannel LED Controller
+.. req:: Multichannel LED Control
    :id: REQ_003
    :tags: controller, channels
    :status: open
