@@ -203,6 +203,142 @@ Define the core features and capabilities of the system.
    - The controller shall include a debug interface for **firmware updates via debugger**.
 
 
+.. req:: Concurrent channel operation
+   :id: REQ_024
+   :tags: controller, debug
+   :links: REQ_025, REQ_026, REQ_027, REQ_028
+   :status: open
+
+   - Arming/firing procedure is independent for each channel.
+
+
+.. req:: Stage switch on-the-fly
+   :id: REQ_025
+   :tags: controller, debug
+   :status: open
+
+   - The user is able to switch between stages "on the fly" using the Device Control panel.
+
+
+.. req:: Dynamic (on-the-fly) current input
+   :id: REQ_026
+   :tags: controller, debug
+   :status: open
+
+   - The user is able to enter custom current values in the desktop application for a particular
+     stage, and they should be applied "on the fly" for the corresponding channel/stage
+
+
+.. req:: Stage-specific current update
+   :id: REQ_027
+   :tags: controller, debug
+   :status: open
+
+   - If current values (mA) are changed for the stage/stages which are not used at the moment,
+     the settings will be applied, but the device will not automatically switch to the stage
+     for which changes were done.
+
+
+.. req:: Task pausing restriction
+   :id: REQ_028
+   :tags: controller, debug
+   :status: open
+
+   - It is not allowed to pause/resume the ongoing task.
+
+
+.. req:: No fine-tune via panel
+   :id: REQ_029
+   :tags: controller, debug
+   :status: open
+
+   - The user is not able to fine-tune the current from the Device Control panel while seeking
+     for the desired amount of optical power.
+
+
+.. req:: EEPROM write restriction
+   :id: REQ_030
+   :tags: controller, debug
+   :status: open
+
+   - The user is not able to flash the resulting current value to EEPROM from the Device Control panel.
+
+
+.. req:: GUI-to-device fine-tuning
+   :id: REQ_031
+   :tags: controller, debug
+   :status: open
+
+   - Current fine-tuning is done only from GUI to the Device and not vice versa.
+
+
+.. req:: Default LED illumination
+   :id: REQ_032
+   :tags: led, default
+   :status: open
+
+   - All LED arrays must be able to constantly illuminate as the default condition.
+
+
+
+.. req:: LED blinking patterns
+   :id: REQ_033
+   :tags: led, pattern
+   :status: open
+
+   - All LED arrays must be able to blink during start-up, arming sequence, and operation. Supported patterns: sine and square.
+
+
+.. req:: Blink control properties
+   :id: REQ_034
+   :tags: led, control, frequency
+   :status: open
+
+   - The operator must be able to adjust the blinking frequency (0.001 Hz min – 10.000 Hz max) and control the number of blinks
+     via the **screen** or **encoder dial**, using either a **timer** or a **number of cycles** for square or sine waveforms.
+
+
+.. req:: Unlimited number of channels
+   :id: REQ_035
+   :tags: led, channels
+   :status: open
+
+   - Ability to assign settings to any number of channels.
+
+
+.. req:: Dual-mode timer support
+   :id: REQ_036
+   :tags: timer, ui
+   :status: open
+
+   - Must include a timer both for time elapsed and a countdown feature.
+
+
+.. req:: Timer resolution (second-based)
+   :id: REQ_037
+   :tags: timer, control
+   :status: open
+
+   - The timer should be adjustable in second increments.
+   - The timer should be adjustable in second increments whereby “+” and “-” icons are pressed to increment the time by 1 unit
+
+
+.. req:: Accurate time elapsed display
+   :id: REQ_038
+   :tags: timer, display
+   :status: open
+
+   - In the count up feature, this should accurately display the time elapsed since the timer began.
+
+
+.. req:: Countdown input flexibility
+   :id: REQ_039
+   :tags: timer, input
+   :status: open
+
+   - In countdown mode, the user should be able to input a specific time or “dose”.
+
+
 .. raw:: latex
   
    \newpage

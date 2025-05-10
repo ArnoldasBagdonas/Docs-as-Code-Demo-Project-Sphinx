@@ -39,7 +39,7 @@ Communication Interfaces & Protocols
 .. spec:: I2C Protocol Specification
    :id: SPEC_002
    :tags: interfaces, led, i2c
-   :links: REQ_018, REQ_020, REQ_021
+   :links: REQ_018, REQ_020, REQ_021, REQ_030
    :status: review
    :open_questions: Should each LED channel have a bus or share one with device addressing?
 
@@ -81,7 +81,7 @@ Hardware
 .. spec:: LED Controller (MCU) Specification
    :id: SPEC_005
    :tags: hardware, controller
-   :links: ARCH_001
+   :links: ARCH_001, ARCH_005
    :status: open
 
    - 4x I2C (dedicated bus per LED channel)
@@ -138,7 +138,7 @@ Hardware
 .. spec:: Display Specification
    :id: SPEC_008
    :tags: hardware, display
-   :links: REQ_008, REQ_009, REQ_010
+   :links: REQ_008, REQ_009, REQ_010, REQ_025, REQ_029, REQ_030, REQ_036, REQ_038
    :status: review
    :open_questions: What resolution and backlighting specs are required?
 
@@ -175,7 +175,7 @@ Hardware
 .. spec:: LED Power Supply Specification
    :id: SPEC_010
    :tags: hardware, waveform, frequency, power
-   :links: REQ_004, REQ_005, REQ_006, REQ_020, REQ_022
+   :links: REQ_004, REQ_005, REQ_006, REQ_020, REQ_022, REQ_032, REQ_033, REQ_034
    :status: review
    :open_questions: Are there flicker, ripple, or EMI constraints to account for?
 

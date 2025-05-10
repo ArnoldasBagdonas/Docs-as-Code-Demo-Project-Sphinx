@@ -42,7 +42,7 @@ Describes dynamic behavior, concurrency, and runtime performance.
 .. arch:: LED Controller - Process View
    :id: ARCH_004
    :tags: actors,user
-   :links: REQ_003, SPEC_003, REQ_007, SPEC_007, SPEC_008, SPEC_009, SPEC_010, SPEC_011, FEAT_001
+   :links: REQ_003, SPEC_003, REQ_007, SPEC_007, SPEC_008, SPEC_009, SPEC_010, SPEC_011, FEAT_001, FEAT_002, FEAT_003
    :status: open
 
    
@@ -56,21 +56,6 @@ Describes dynamic behavior, concurrency, and runtime performance.
 .. raw:: latex
   
    \newpage
-
-
-Features
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Shows use cases or sequences that validate and illustrate the other views.
-(Example: sequence diagrams for "user presses power button" or "desktop app changes settings")
-
-
-.. feat:: LED Controller - Features
-   :id: FEAT_001
-   :tags: actors,user
-   :status: open
-
-
-   TBD
 
 
 Development View
@@ -119,6 +104,49 @@ Describes the deployment — how components are mapped to hardware.
    \newpage
 
 
+Features
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Shows use cases or sequences that validate and illustrate the other views.
+(Example: sequence diagrams for "user presses power button" or "desktop app changes settings")
+
+
+.. feat:: LED Controller - Channel setup
+   :id: FEAT_001
+   :tags: actors,user
+   :links: REQ_035
+   :status: open
+
+   - Select channel to work with
+   - Recolor the channel window with LED wavelength color used
+   - Read calibration data stored on EEPROM on LED devices. This data is used to determine the Stages the user can select from.
+   - Provide settings. Settings (waveform, frequency, stage, timer/count up) are specified PRIOR to arming sequence.  
+
+
+.. feat:: LED Controller - Channel arming
+   :id: FEAT_002
+   :tags: actors,user
+   :links: REQ_024, REQ_035
+   :status: open
+
+
+   - The user presses the arm button
+   - Indicate arming (1.5Hz, yellow color on the display)
+   - Execute arming sequence (blinking should be done al lowest possible amperage at 1.5Hz)
+   - Armed state timeout (10s) 
+
+
+.. feat:: LED Controller - Channel firing
+   :id: FEAT_003
+   :tags: actors,user
+   :links: REQ_024, REQ_035
+   :status: open
+
+
+   - Fire
+   - Change stage, if needed
+   - Stop
+
+
 Desktop Application
 ----------------------------------------------------------------------------------------
 
@@ -130,7 +158,7 @@ Describes functionality — what the system should do.
 .. arch:: Desktop Application - Logical View
    :id: ARCH_002
    :tags: controller, interfaces, ui, hardware
-   :links: FEAT_002
+   :links: FEAT_100, REQ_031
    :status: open
    :open_questions: Headless operation lacks definition!
 
@@ -153,7 +181,7 @@ Shows use cases or sequences that validate and illustrate the other views.
 
 
 .. feat:: Desktop Application - Features
-   :id: FEAT_002
+   :id: FEAT_100
    :tags: actors,user
    :status: open
 

@@ -102,7 +102,7 @@ plantuml = 'java -jar /plantuml/plantuml.jar'
 needs_types = [
     dict(directive="req", title="Requirement", prefix="R_", color="#BFD8D2", style="node"),    # Soft Aqua
     dict(directive="arch", title="Architecture", prefix="A_", color="#C8E1E7", style="node"),  # Pale Blue-Gray
-    dict(directive="feat", title="Architecture", prefix="F_", color="#C8E1E7", style="node"),  # Pale Blue-Gray
+    dict(directive="feat", title="Feature", prefix="F_", color="#5BB2C5", style="node"),       # Vibrant Teal-Blue
     dict(directive="spec", title="Specification", prefix="S_", color="#FEDCD2", style="node"), # Peach Tint
     dict(directive="impl", title="Implementation", prefix="I_", color="#DF744A", style="node"),# Burnt Coral
     dict(directive="test", title="Test Case", prefix="T_", color="#DCB239", style="node"),     # Warm Yellow
