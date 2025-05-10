@@ -88,6 +88,7 @@ Define the core features and capabilities of the system.
 
    - The controller shall allow configurable **power output in five levels per channel**,
      supporting full-duty operation.
+   - Each channel will carry 3.33A at 56V (~186.5W each channel) resulting in about 746W of total power.
 
 
 .. req:: Operating Time Control
