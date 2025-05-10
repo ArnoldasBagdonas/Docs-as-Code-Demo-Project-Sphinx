@@ -93,7 +93,7 @@ Describes the deployment — how components are mapped to hardware.
    :status: open
 
 
-   .. image:: _static/images/diagrams/ViewPlaceholder.drawio.png
+   .. image:: _static/images/diagrams/LEDControllerPhysicalView.drawio.png
       :width: 800
       :align: center
       :alt: Physical View
