@@ -101,11 +101,6 @@ Hardware
 
    - Includes mechanical and electrical lifetime specifications.
 
-   - **Note:** The Client will provide guidance as to where on the enclosure any buttons are to be
-     located. It is assumed that the documentation of target control logic, user actions, and
-     transitions will be provided by the Client.
-
-
 .. spec:: Controls/Buttons Specification
    :id: SPEC_007
    :tags: hardware, ui
