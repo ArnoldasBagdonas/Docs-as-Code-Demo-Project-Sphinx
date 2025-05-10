@@ -19,6 +19,7 @@
 				"ms-python.python",
 				"littlefoxteam.vscode-python-test-adapter",
 				"useblocks.ubcode",
+				//obsolete -> "useblocks.sphinx-needs-vscode",
 				"streetsidesoftware.code-spell-checker",
 				//"alefragnani.bookmarks"
 			], 
