@@ -70,7 +70,7 @@ Describes software structure in terms of modules and components.
    :status: open
 
    
-   .. image:: _static/images/diagrams/ViewPlaceholder.drawio.png
+   .. image:: _static/images/diagrams/LEDControllerDevelopmentView.drawio.png
       :width: 800
       :align: center
       :alt: Development View
