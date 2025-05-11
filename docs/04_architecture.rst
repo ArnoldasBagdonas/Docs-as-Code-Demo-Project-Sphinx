@@ -8,17 +8,11 @@ High-level system structure and how components interact.
    :style: table
 
 
-.. raw:: latex
-  
-   \newpage
-
 LED Controller
 ----------------------------------------------------------------------------------------
 
 Logical View
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Describes functionality — what the system should do.
-(Example: modules - UI handling, LED PWM control, Fan management, Settings storage)
 
 .. arch:: LED Controller - Logical View
    :id: ARCH_001
@@ -33,11 +27,8 @@ Describes functionality — what the system should do.
       :alt: Logical View
 
 
-
 Process View
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Describes dynamic behavior, concurrency, and runtime performance.
-(Example: real-time tasks for LED control, UI input polling, serial communication)
 
 .. arch:: LED Controller - Process View
    :id: ARCH_004
@@ -52,16 +43,8 @@ Describes dynamic behavior, concurrency, and runtime performance.
       :alt: Development View
 
 
-
-.. raw:: latex
-  
-   \newpage
-
-
 Development View
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Describes software structure in terms of modules and components.
-(Example: source code organized into drivers, middleware, app layer, HAL)
 
 .. arch:: LED Controller - Development View
    :id: ARCH_003
@@ -76,15 +59,8 @@ Describes software structure in terms of modules and components.
       :alt: Development View
 
 
-.. raw:: latex
-  
-   \newpage
-
-
 Physical View
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Describes the deployment — how components are mapped to hardware.
-(Example: mapping of firmware to MCU hardware, I2C buses to peripherals, power domains)
 
 .. arch:: LED Controller - Physical View
    :id: ARCH_005
@@ -99,16 +75,8 @@ Describes the deployment — how components are mapped to hardware.
       :alt: Physical View
 
 
-.. raw:: latex
-  
-   \newpage
-
-
 Features
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Shows use cases or sequences that validate and illustrate the other views.
-(Example: sequence diagrams for "user presses power button" or "desktop app changes settings")
-
 
 .. feat:: LED Controller - Channel setup
    :id: FEAT_001
@@ -116,10 +84,64 @@ Shows use cases or sequences that validate and illustrate the other views.
    :links: REQ_035
    :status: open
 
-   - Select channel to work with
-   - Recolor the channel window with LED wavelength color used
-   - Read calibration data stored on EEPROM on LED devices. This data is used to determine the Stages the user can select from.
-   - Provide settings. Settings (waveform, frequency, stage, timer/count up) are specified PRIOR to arming sequence.  
+
+   .. needuml::
+
+      ' === Global Style Settings ===
+      ' skinparam backgroundColor transparent
+      ' skinparam shadowing false
+      ' skinparam monochrome false
+
+      ' === Font Styling ===
+      skinparam defaultFontName "Consolas, Courier New, monospace"
+      skinparam defaultFontSize 14
+      
+      actor System #E1EAFF
+      participant InputTask  #E1EAFF
+      participant ControllerTask  #E1EAFF
+      participant "LEDChannel[n]Task" as LEDChannelTask   #E1EAFF
+      participant ViewTask  #E1EAFF
+      participant "Timer[n]" as Timer  #E1EAFF
+      participant "DMA/PWM Driver[n]" as DMA  #E1EAFF
+      participant "I2C Driver[n]" as I2CDriver #E1EAFF
+      participant "Display Driver" as Display  #E1EAFF
+      participant Buzzer  #E1EAFF
+      
+      System -> LEDChannelTask : systemInitCompleted event
+
+      LEDChannelTask -> Timer : LEDChannel[n].startSettingsTimer()
+
+      note right of LEDChannelTask
+         Initial state DISCONNECTED
+      end note
+
+      loop#Gold While in DISCONNECTED state and LEDChannel[n].hasMissingSettings()
+         Timer -> LEDChannelTask : settingsRequest event
+         LEDChannelTask -> I2CDriver: LEDChannel[n].tryReadSettings()
+         alt#Gold #BFD8D2 Successful case
+            I2CDriver -> LEDChannelTask: settings(calibration, stage)
+            note right of LEDChannelTask
+               State changed to IDLE
+            end note
+            
+            LEDChannelTask -> ControllerTask: cableConnected event
+            ControllerTask -> ControllerTask: LEDChannelTask[n].applySettingsFrom(LEDChannel[n])
+            note right of ControllerTask
+               Provide settings. Settings (waveform, frequency, stage,
+               timer/count up) are specified PRIOR to arming sequence
+            end note
+
+            LEDChannelTask -> ControllerTask : stateChanged event
+            ControllerTask -> ViewTask : renderView event
+            ViewTask -> Display : Render Screen
+            note right of ViewTask
+               Recolor the channel window with LED wavelength color used
+            end note
+         else #FEDCD2 Failure
+            I2CDriver -> LEDChannelTask: not connected
+         end
+         
+      end
 
 
 .. feat:: LED Controller - Channel arming
@@ -129,10 +151,80 @@ Shows use cases or sequences that validate and illustrate the other views.
    :status: open
 
 
-   - The user presses the arm button
-   - Indicate arming (1.5Hz, yellow color on the display)
-   - Execute arming sequence (blinking should be done al lowest possible amperage at 1.5Hz)
-   - Armed state timeout (10s) 
+   .. needuml::
+
+      ' === Global Style Settings ===
+      ' skinparam backgroundColor transparent
+      ' skinparam shadowing false
+      ' skinparam monochrome false
+
+      ' === Font Styling ===
+      skinparam defaultFontName "Consolas, Courier New, monospace"
+      skinparam defaultFontSize 14
+      
+      actor User #E1EAFF
+      participant InputTask  #E1EAFF
+      participant ControllerTask  #E1EAFF
+      participant "LEDChannel[n]Task" as LEDChannelTask   #E1EAFF
+      participant ViewTask  #E1EAFF
+      participant "Timer[n]" as Timer  #E1EAFF
+      participant "DMA/PWM Driver[n]" as DMA  #E1EAFF
+      participant "I2C Driver[n]" as I2CDriver #E1EAFF
+      participant "Display Driver" as Display  #E1EAFF
+      participant Buzzer  #E1EAFF
+      
+      == Channel Arming Sequence ==
+
+      
+      User -> InputTask : press ARM button
+      InputTask -> ControllerTask : armingRequest event
+      group#Gold While LEDChannel[n] in READY state
+         ControllerTask -> LEDChannelTask : armingRequest event
+         note right of LEDChannelTask
+            State changed to ARMING
+         end note
+      end
+
+      LEDChannelTask -> ControllerTask : stateChanged event
+      ControllerTask -> ViewTask : renderView event
+      ViewTask -> Display : Render Screen
+
+
+      LEDChannelTask -> Timer : LEDChannel[n].startArmingTimer()
+      note right of LEDChannelTask
+         Armed state timeout (10s)
+      end note
+      LEDChannelTask -> DMA : LEDChannel[n].startArmingWaveform()
+      note right of LEDChannelTask
+         Execute arming sequence (blinking should be
+         done al lowest possible amperage at 1.5Hz)
+      end note
+      
+      loop#Gold While LEDChannel[n].hasIncompleteArming()
+         Timer -> LEDChannelTask: tick event
+         LEDChannelTask -> LEDChannelTask: armingUpdate()
+         note right of LEDChannelTask
+            Once a channel gets fired, an audible tone is produced
+         end note
+         LEDChannelTask -> Buzzer
+         note right of LEDChannelTask
+            Indicate arming (1.5Hz, yellow color on the display)
+         end note
+         LEDChannelTask -> ControllerTask : stateChanged event
+         ControllerTask -> ViewTask : renderView event
+         ViewTask -> Display : Render Screen
+      end
+      
+      ... after arming complete ...
+
+      Timer -> LEDChannelTask : armingCompleted event
+      note right of LEDChannelTask
+         State changed to READY
+      end note
+
+      LEDChannelTask -> ControllerTask : stateChanged event
+      ControllerTask -> ViewTask : renderView event
+      ViewTask -> Display : Render Screen
 
 
 .. feat:: LED Controller - Channel firing
@@ -142,9 +234,96 @@ Shows use cases or sequences that validate and illustrate the other views.
    :status: open
 
 
-   - Fire
-   - Change stage, if needed
-   - Stop
+   .. needuml::
+
+      ' === Global Style Settings ===
+      ' skinparam backgroundColor transparent
+      ' skinparam shadowing false
+      ' skinparam monochrome false
+
+      ' === Font Styling ===
+      skinparam defaultFontName "Consolas, Courier New, monospace"
+      skinparam defaultFontSize 14
+      
+      actor User #E1EAFF
+      participant InputTask  #E1EAFF
+      participant ControllerTask  #E1EAFF
+      participant "LEDChannel[n]Task" as LEDChannelTask   #E1EAFF
+      participant ViewTask  #E1EAFF
+      participant "Timer[n]" as Timer  #E1EAFF
+      participant "DMA/PWM Driver[n]" as DMA  #E1EAFF
+      participant "I2C Driver[n]" as I2CDriver #E1EAFF
+      participant "Display Driver" as Display  #E1EAFF
+      participant Buzzer  #E1EAFF
+      
+      == Change stage settings, if needed ==
+
+      
+      loop#Gold While user using controls changes LEDChannel[n] settings
+         User -> InputTask : adjusts LEDChannel[n] settings.
+         InputTask -> ControllerTask : update event
+         ControllerTask -> LEDChannelTask : update event
+         group#Gold While LEDChannel[n] not in FIRE state
+            LEDChannelTask -> LEDChannelTask : LEDChannel[n].updateFireSettings()
+            LEDChannelTask -> ControllerTask : stateChanged event
+            ControllerTask -> ViewTask : renderView event
+            ViewTask -> Display : Render Screen
+         end
+      end
+
+      == Channel fire sequence ==
+
+      
+      User -> InputTask : press FIRE button
+      InputTask -> ControllerTask : fireRequest event
+      group#Gold While LEDChannel[n] in READY state
+         ControllerTask -> LEDChannelTask : fireRequest event
+         note right of LEDChannelTask
+            State changed to FIRE
+         end note
+      end
+      
+      
+      LEDChannelTask -> ControllerTask : stateChanged event
+      ControllerTask -> ViewTask : renderView event
+      ViewTask -> Display : Render Screen
+
+      LEDChannelTask -> Timer : LEDChannel[n].startTimers()
+      LEDChannelTask -> DMA : LEDChannel[n].startWaveform()
+      LEDChannelTask -> ViewTask : renderView event
+      ViewTask -> Display : Render Screen
+      loop#Gold While LEDChannel[n].hasTimerRunning() or LEDChannel[n].hasIncompleteWaveform()
+         Timer -> LEDChannelTask: tick event / stageUpdate()
+         LEDChannelTask -> ControllerTask : stateChanged event
+         ControllerTask -> ViewTask : renderView event
+         ViewTask -> Display : Render Screen
+      end
+      
+      ... after timer/cycles complete ...
+
+      Timer -> LEDChannelTask : fireCompleted event
+      note right of LEDChannelTask
+         State changed to READY
+      end note
+
+      LEDChannelTask -> ControllerTask : stateChanged event
+      ControllerTask -> ViewTask : renderView event
+      ViewTask -> Display : Render Screen
+
+      == Channel stop sequence ==
+
+      
+      User -> InputTask : press STOP button
+      InputTask -> ControllerTask : stopRequest event
+      group#gold While LEDChannel[n] in READY state
+         ControllerTask -> LEDChannelTask : stopRequest event
+         note right of LEDChannelTask
+            State changed to IDLE
+         end note
+      end
+      LEDChannelTask -> ControllerTask : stateChanged event
+      ControllerTask -> ViewTask : renderView event
+      ViewTask -> Display : Render Screen
 
 
 Desktop Application
