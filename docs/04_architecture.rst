@@ -23,6 +23,7 @@ Logical View
 
 
    .. image:: _static/images/diagrams/LEDControllerLogicalView.drawio.png
+      :width: 800
       :align: center
       :alt: Logical View
 
