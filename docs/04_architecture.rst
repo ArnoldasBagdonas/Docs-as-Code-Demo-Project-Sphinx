@@ -22,7 +22,7 @@ Logical View
    :open_questions: Headless operation lacks definition!
 
 
-   .. image:: _static/images/diagrams/LEDControllerLogicalView.drawio.png
+   .. image:: _static/images/diagrams/LEDControllerLogicalViewV2.drawio.png
       :width: 800
       :align: center
       :alt: Logical View
