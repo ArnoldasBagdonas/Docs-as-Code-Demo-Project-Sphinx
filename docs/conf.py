@@ -18,10 +18,14 @@ import sys
 import xml.etree.ElementTree as ET
 import subprocess
 
+# Add src/ folder at the start of sys.path so Sphinx can import modules
+sys.path.insert(0, os.path.abspath('../src'))
+
 # Add your tests directory to the system path
 #sys.path.insert(0, os.path.abspath('../tests'))
 #sys.path.append(os.path.abspath('../tests'))
 sys.path.append(os.path.abspath('../scripts'))
+
 
 # Define the Doxygen XML path
 #doxygen_xml_path = os.path.abspath('/workspace/build/breathe/xml')
@@ -91,6 +95,7 @@ extensions = [
     # sphinx-test-reports functionality not as expected!
     #'sphinxcontrib.test_reports',
     'sphinxcontrib.plantuml',
+    'sphinxcontrib.openapi',
     'sphinx.ext.doctest',
     'sphinx-jsonschema',
 ]
@@ -197,3 +202,11 @@ exclude_patterns += ['**/*.tex', '**/*.tex_t']
 #	"ExampleProject": doxygen_xml_path
 #}
 #breathe_default_project = "ExampleProject"
+
+
+# Swagger UI config
+
+# Remove any other Swagger UI configs you don’t need when you use the
+#  .. swaggerui:: directive with a path!
+
+#swagger_ui_default_url = '../api/openapi.yaml'  # default spec file
