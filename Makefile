@@ -15,11 +15,11 @@ all: clean
 	@echo "Running doctests..."
 	@$(SPHINXBUILD) -M doctest "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
 	@if [ $$? -eq 0 ]; then \
-		echo "Doctests passed. Building LaTeX PDF..."; \
-		$(SPHINXBUILD) -M latexpdf "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O); \
-		$(SPHINXBUILD) -M json "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O) \
+		echo "Doctests passed. Building JSON and HTML output..."; \
+		$(SPHINXBUILD) -M json "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O); \
+		$(SPHINXBUILD) -M html "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O); \
 	else \
-		echo "Doctests failed. Skipping LaTeX PDF build."; \
+		echo "Doctests failed. Skipping JSON and HTML builds."; \
 	fi
 
 # Target to build JSON output using Sphinx
