@@ -1,0 +1,60 @@
+openapi: 3.0.0
+info:
+  title: QuadLED Controller API
+  version: "1.0.0"
+
+paths:
+  /channels:
+    get:
+      summary: List all channels
+      responses:
+        "200":
+          description: Channel list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    power:
+                      type: integer
+
+  /channels/{id}/power:
+    post:
+      summary: Set power level
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                power:
+                  type: integer
+                  minimum: 0
+                  maximum: 100
+      responses:
+        "200":
+          description: Power updated
+
+  /channels/{id}/fire:
+    post:
+      summary: Fire the LED channel
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "204":
+          description: Channel fired
