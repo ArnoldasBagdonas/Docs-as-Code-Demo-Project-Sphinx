@@ -1,7 +1,12 @@
 Testing
 ============================================
 
-Verifies system against requirements and specs.
+Verification of system behavior against requirements and specifications.
+
+.. needtable::
+   :filter: type == 'test'
+   :columns: id;title;status;links;tags
+   :style: table
 
 The **AAA (Arrange–Act–Assert)** pattern is a structured way to write clear,
 readable, and consistent unit tests. Each test is divided into three stages:
@@ -11,8 +16,8 @@ readable, and consistent unit tests. Each test is divided into three stages:
 3. **Assert** – Verify that the output is correct.
 
 This pattern is primarily used for **unit tests**, which focus on isolated
-functions or classes. Examples include testing a single function like `multiply`
-to ensure it produces the expected results.
+functions or classes. Examples include testing a single function like to
+ensure it produces the expected results.
 
 Integration Tests
 -----------------
@@ -33,18 +38,25 @@ or extended. Common guidelines include:
 Integration tests are generally heavier and slower than unit tests and may
 require fixtures, mocks, or test containers to manage external dependencies.
 
-Helper to run individual tests from test_controller.py
-------------------------------
 
->>> import sys, os, unittest
->>> sys.path.insert(0, os.path.abspath('/workspace/src'))
->>> sys.path.insert(0, os.path.abspath('/workspace/tests'))
->>> import test_controller
->>> def run(test_name):
-...     suite = unittest.TestLoader().loadTestsFromName(test_name, module=test_controller)
-...     result = unittest.TextTestRunner(stream=open(os.devnull, 'w')).run(suite)
-...     return result.wasSuccessful()
+.. testsetup:: *
+   
+   # Helper to run individual tests from test_controller.py
+   #
+   # This block is executed before every doctest in this file.
+   # It makes the “run()” helper function and imports available to doctests
+   # without exposing these lines as doctests themselves.
 
+   import sys, os, unittest
+   sys.path.insert(0, os.path.abspath('/workspace/src'))
+   sys.path.insert(0, os.path.abspath('/workspace/tests'))
+
+   import test_controller
+
+   def run(test_name):
+       suite = unittest.TestLoader().loadTestsFromName(test_name, module=test_controller)
+       result = unittest.TextTestRunner(stream=open(os.devnull, 'w')).run(suite)
+       return result.wasSuccessful()
 
 LED Controller Unit Tests (Example)
 -----------------------------------
@@ -58,36 +70,77 @@ The tests validate:
 - valid power updates
 - error conditions (invalid channel, invalid value)
 
-**test_initial_power_levels**
+.. test:: Initial power levels are zero for all channels
+   :id: TEST_LEDCTRL_001
+   :tags: unit, controller, power
+   :links: SPEC_005, SPEC_010, REQ_020
+   :status: implemented
 
-- **Arrange** – create a controller with default 4 channels
-- **Act** – (no action)
-- **Assert** – channel 0 power is `0` and total channels is `4`
+   **Arrange:**  
+   - Create a new `LEDController` instance with default 4 channels.
 
->>> run('TestLEDController.test_initial_power_levels')
-True
+   **Act:**  
+   - No action (initialization check).
 
-**test_set_power_valid**
+   **Assert:**  
+   - Channel 0 power equals `0`.  
+   - Total number of channels equals `4`.
 
-- **Arrange** – create a controller
-- **Act** – `set_power(2, 75)`
-- **Assert** – channel 2 power equals `75`
+   **Autodoc Execution:**
 
->>> run('TestLEDController.test_set_power_valid')
-True
+   >>> run('TestLEDController.test_initial_power_levels')
+   True
 
-**test_set_power_invalid_channel**
+.. test:: Setting valid power updates channel correctly
+   :id: TEST_LEDCTRL_002
+   :tags: unit, controller, power
+   :links: SPEC_005, SPEC_010
+   :status: implemented
 
-- **Arrange** – create a controller
-- **Act / Assert** – calling `set_power(10, 50)` raises `ValueError`
+   **Arrange:**  
+   - Create a new `LEDController`.
 
->>> run('TestLEDController.test_set_power_invalid_channel')
-True
+   **Act:**  
+   - Call `set_power(2, 75)`.
 
-**test_set_power_invalid_value**
+   **Assert:**  
+   - Channel 2 power equals `75`.
 
-- **Arrange** – create a controller
-- **Act / Assert** – calling `set_power(1, 200)` raises `ValueError`
+   **Autodoc Execution:**
 
->>> run('TestLEDController.test_set_power_invalid_value')
-True
+   >>> run('TestLEDController.test_set_power_valid')
+   True
+
+.. test:: Setting power on invalid channel raises ValueError
+   :id: TEST_LEDCTRL_003
+   :tags: unit, controller, errors, validation
+   :links: SPEC_005, SPEC_010
+   :status: implemented
+
+   **Arrange:**  
+   - Create a new `LEDController`.
+
+   **Act / Assert:**  
+   - Calling `set_power(10, 50)` must raise `ValueError`.
+
+   **Autodoc Execution:**
+
+   >>> run('TestLEDController.test_set_power_invalid_channel')
+   True
+
+.. test:: Setting invalid power value raises ValueError
+   :id: TEST_LEDCTRL_004
+   :tags: unit, controller, errors, validation
+   :links: SPEC_005, SPEC_010
+   :status: implemented
+
+   **Arrange:**  
+   - Create a new `LEDController`.
+
+   **Act / Assert:**  
+   - Calling `set_power(1, 200)` must raise `ValueError`.
+
+   **Autodoc Execution:**
+
+   >>> run('TestLEDController.test_set_power_invalid_value')
+   True
