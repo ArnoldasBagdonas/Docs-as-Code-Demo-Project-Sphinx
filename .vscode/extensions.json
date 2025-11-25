@@ -1,0 +1,11 @@
+{
+  "recommendations": [
+    "ms-vscode-remote.remote-containers",
+    "hediet.vscode-drawio",
+    "mhutchie.git-graph",
+    "eamodio.gitlens"
+  ],
+//   "unwantedRecommendations": [
+//     "some.publisher.extension-to-avoid"
+//   ]
+}
