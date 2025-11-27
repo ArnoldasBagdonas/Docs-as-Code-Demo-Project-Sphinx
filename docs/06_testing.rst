@@ -48,7 +48,7 @@ require fixtures, mocks, or test containers to manage external dependencies.
    # without exposing these lines as doctests themselves.
 
    import sys, os, unittest
-   sys.path.insert(0, os.path.abspath('/workspace/src'))
+   sys.path.insert(0, os.path.abspath('/workspace/software'))
    sys.path.insert(0, os.path.abspath('/workspace/tests'))
 
    import test_controller

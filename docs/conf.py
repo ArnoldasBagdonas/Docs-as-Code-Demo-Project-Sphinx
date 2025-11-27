@@ -19,12 +19,12 @@ import xml.etree.ElementTree as ET
 import subprocess
 
 # Add src/ folder at the start of sys.path so Sphinx can import modules
-sys.path.insert(0, os.path.abspath('../src'))
+sys.path.insert(0, os.path.abspath('../software'))
 
 # Add your tests directory to the system path
 #sys.path.insert(0, os.path.abspath('../tests'))
 #sys.path.append(os.path.abspath('../tests'))
-sys.path.append(os.path.abspath('../scripts'))
+#sys.path.append(os.path.abspath('../scripts'))
 
 
 # Define the Doxygen XML path

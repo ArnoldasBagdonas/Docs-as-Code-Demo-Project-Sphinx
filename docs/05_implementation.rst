@@ -8,7 +8,7 @@ This section demonstrates how to use **auto-generated API documentation** from a
 
 The REST API documentation is generated directly from the `openapi.yaml` file:
 
-.. openapi:: ../api/openapi.yaml
+.. openapi:: ../software/api/openapi.yaml
    :encoding: utf-8
 
 
