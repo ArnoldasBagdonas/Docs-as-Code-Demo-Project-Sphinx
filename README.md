@@ -1,90 +1,164 @@
-# Quadled Controller
+# Docs-as-Code Demo Project (Using Sphinx)
 
-**QuadLED Controller** is a modular, high-power tabletop controller designed to operate up to four LED panels simultaneously. It features embedded control with a local interface and remote access via a desktop application.
+This repository is an example implementation of a full Docs-as-Code workflow using:
 
-This repository contains the full stack of the project including:
+- Sphinx for documentation.
+- Autodoc for API extraction.
+- Doctest for testing documentation examples.
+- Doxygen + Breathe for cross-language code documentation.
+- sphinx-needs for requirements & traceability.
+- A realistic but minimal example project: QuadLED Controller.
 
-- **Hardware design**
-- **Embedded firmware**
-- **Desktop application for production configuration**
-- **Technical documentation**
+The goal is to demonstrate how documentation can become:
 
+- Versioned.
+- Testable.
+- Reviewable.
+- Automated.
+- Integrated directly with code.
 
-## 🔧 Project Structure
+This repository is used together with the presentation:
+
+- **Docs-as-Code-with-Sphinx.pdf** (included in the repo).
+
+## 🔧 Repository Structure (Docs-as-Code Example)
 
 ```
-quadled-controller/
-├── hardware/ # Schematics, PCB design files
-├── firmware/ # MCU firmware source
-├── desktop-app/ # desktop app  source
-├── docs/ # Sphinx documentation (specs, risks, milestones)
+.
+├── LICENSE
+├── Makefile                         # Full Sphinx build pipeline
 ├── README.md
-└── LICENSE.md
+├── ubproject.toml                   # Example build/project metadata
+│
+├── docs/                            # All documentation sources
+│   ├── 01_overview.rst              # Intro & problem statement
+│   ├── 02_requirements.rst          # Requirements (with sphinx-needs)
+│   ├── 03_specifications.rst        # System & component specs
+│   ├── 04_architecture.rst          # Architecture diagrams & views
+│   ├── 05_implementation.rst        # Implementation explanation
+│   ├── 06_testing.rst               # Test strategy + doctest integration
+│   ├── 07_reports.rst               # Generated reports
+│   │
+│   ├── _doxygen/                    # Doxygen templates (for C/C++/firmware docs)
+│   ├── _sphinx/                     # Dynamic configuration templates
+│   ├── _static/                     # Images, diagrams, and CSS
+│   ├── conf.py                      # Sphinx configuration
+│   └── index.rst                    # Documentation entry point
+│
+├── software/                        # Example Python code to document
+│   ├── api/
+│   │   └── openapi.yaml             # Used in OpenAPI → Sphinx integration
+│   └── quadled/
+│       └── controller.py            # Demonstrates autodoc + type hints
+│
+├── firmware/                        # Placeholder demonstrating multi-domain docs
+│   └── README.md
+│
+├── hardware/                        # Additional domain placeholder
+│   └── README.md
+│
+└── tests/                           # Tests + doctest integration
+    └── test_controller.py
+
 ```
 
-## 📌 Key Features
+## 📌 Why This Repository Exists
 
-### LED Controller
+This repository exists **not to showcase the QuadLED device**, but to demonstrate a **complete Docs-as-Code pipeline**, including:
 
-- 4 independent high-power channels (186.5W each)
-- Custom waveform control (sin/square, 0.001–10 kHz)
-- Arm/fire safety logic per channel
-- Display panel with encoder dial and button controls
-- Audio feedback for safety warnings
-- Headless operation via serial protocol
+### Sphinx Documentation
 
-### Desktop Application
+Organized by engineering lifecycle:
 
-- EEPROM configuration read/write tool for production
-- Manual assignment of LED panel parameters
-- Simple, production-focused GUI
+- Overview.
+- Requirements.
+- Specifications.
+- Architecture.
+- Implementation.
+- Testing.
+- Reports.
 
+### Autodoc
 
-## 📚Documentation
+Python code inside `software/quadled/` contains docstrings that are automatically extracted into the documentation.
+
+### Doctest
+
+Executable code examples inside .rst files are automatically validated during documentation builds.
+This ensures that:
+
+- Examples remain correct and in sync with the codebase.
+- Documentation fails to build if example code is broken.
+- Standard test runners (e.g., pytest) and doctest checks work together to maintain accuracy.
+
+Doctest provides an additional safety layer, preventing outdated or incorrect examples from being merged.
+
+### Doxygen + Breathe
+
+Firmware components can be documented using Doxygen and included in Sphinx.
+
+### sphinx-needs
+
+Requirements, architecture elements, and traceability are managed as structured objects.
 
 All specifications, requirements, risks, and system architecture are maintained in the `docs/` folder using [Sphinx](https://www.sphinx-doc.org/) and [`sphinx-needs`](https://sphinx-needs.readthedocs.io/)
 
-### Build HTML Documentation
+### CI-Friendly Makefile
 
-From the `root` directory:
+The `Makefile` includes:
+
+- `make all` → clean + doctest + JSON + HTML
+- `make latexpdf` → PDF output
+- `make json` → machine-readable documentation
+- `make git-hours` → estimate work time from Git
+
+## Build Documentation
+
+### Build Everything (Doctests + JSON + HTML)
+
+```
+make all
+```
+
+### Build Only HTML
 
 ```
 make html
 ```
-Then open the generated documentation in your browser: [build/html/index.html](build/html/index.html)
 
-### Build PDF Documentation
-
-From the `root` directory:
+### Build PDF
 
 ```
 make latexpdf
 ```
-Then open the generated documentation in your browser: [build/latex/refmanual.pdf](build/latex/refmanual.pdf)
 
-## 📊 Estimate Git Commit Hours
+### Clean Everything
 
-To get an estimate of time spent on the project based on Git history:
 ```
-make latexpdf
+make clean
+make clean-gitignore
+```
+
+### Estimate Development Hours (Docs + Code)
+
+```
+make git-hours
 ```
 This runs [git-hours](https://pypi.org/project/git-hours/) using default settings.
 
-## ⚙️ Build & Run
+## Example Use Case
 
-Instructions for each component are located in their respective folders:
+The QuadLED Controller is included only as a sample multi-domain project, demonstrating how Sphinx accommodates:
 
-- [hardware/README.md](hardware/README.md) – PCB design notes, tools used
+- Hardware documentation.
+- Firmware.
+- Desktop software.
+- API specs.
+- Python modules.
+- Tests.
+- Architecture diagrams.
 
-- [firmware/README.md](firmware/README.md) – toolchain setup, build commands
-
-- [desktop-app/README.md](desktop-app/README.md) – prerequisites and how to run
-
-### Add your files
-
-- [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [Add files using the command line](https://docs.gitlab.com/topics/git/add_files/#add-files-to-a-git-repository) or push an existing Git repository with the following command:
-
+This structure helps teams adopt Docs-as-Code for real engineering projects.
 
 ## 🛡️ License
 
