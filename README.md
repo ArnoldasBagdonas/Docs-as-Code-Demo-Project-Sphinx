@@ -21,7 +21,7 @@ This repository is used together with the presentation:
 
 - **Docs-as-Code-with-Sphinx.pdf** (included in the repo).
 
-## 🔧 Repository Structure (Docs-as-Code Example)
+## 🔧 Repository Structure
 
 ```
 .
@@ -45,7 +45,7 @@ This repository is used together with the presentation:
 │   ├── conf.py                      # Sphinx configuration
 │   └── index.rst                    # Documentation entry point
 │
-├── software/                        # Example Python code to document
+├── software/                        # Example code to document
 │   ├── api/
 │   │   └── openapi.yaml             # Used in OpenAPI → Sphinx integration
 │   └── quadled/
@@ -98,8 +98,6 @@ Doctest provides an additional safety layer, preventing outdated or incorrect ex
 Firmware components can be documented using Doxygen and included in Sphinx.
 
 ### sphinx-needs
-
-Requirements, architecture elements, and traceability are managed as structured objects.
 
 All specifications, requirements, risks, and system architecture are maintained in the `docs/` folder using [Sphinx](https://www.sphinx-doc.org/) and [`sphinx-needs`](https://sphinx-needs.readthedocs.io/)
 
