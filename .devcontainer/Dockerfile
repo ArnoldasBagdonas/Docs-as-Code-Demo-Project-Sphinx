@@ -11,7 +11,7 @@ RUN apt-get update && \
     wget curl valgrind doxygen doxygen-latex graphviz default-jre \
     texlive-latex-base texlive-fonts-recommended latexmk \
     fonts-cantarell fonts-roboto fonts-ubuntu fonts-freefont-otf\
-    texlive-xetex xindy tree
+    texlive-xetex xindy tree gnuplot
 
 # Accept the MS Core Fonts EULA
 RUN echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | debconf-set-selections

@@ -30,6 +30,16 @@ json:
 clean:
 	@$(SPHINXBUILD) -M clean "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
 
+# Clean everything listed in .gitignore
+clean-gitignore:
+	@echo "Cleaning all artifacts defined in .gitignore..."
+	# Remove all __pycache__ directories recursively
+	@find . -type d -name "__pycache__" -exec rm -rf {} +
+	# Remove all .pyc files recursively
+	@find . -type f -name "*.pyc" -delete
+	# Remove specific ignored top-level directories
+	@rm -rf build/ .pytest_cache/
+
 # The 'help' target provides a summary of available commands.
 help:
 	@$(SPHINXBUILD) -M help "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
@@ -43,6 +53,13 @@ latexpdf:
 # NOTE: No command-line arguments are supported—runs with default settings.
 git-hours:
 	@git-hours
+
+# Run GitStats
+git-stats:
+	@echo "Generating GitStats report ..."
+	@mkdir -p $(BUILDDIR)/gitstats
+	@gitstats . $(BUILDDIR)/gitstats
+	@echo "Report saved to $(BUILDDIR)/gitstats/index.html"
 
 # Catch-all target: routes any unknown target to Sphinx using
 # the "make mode" option. $(O) is a shortcut for $(SPHINXOPTS).

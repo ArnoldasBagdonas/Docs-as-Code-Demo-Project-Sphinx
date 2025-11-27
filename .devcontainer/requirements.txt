@@ -18,3 +18,7 @@ pytest
 # sphinx-test-reports 
 sphinx-jsonschema
 git-hours
+
+# https://gitstats.readthedocs.io/en/latest/installation.html
+gitstats
+# gitstats-forked
