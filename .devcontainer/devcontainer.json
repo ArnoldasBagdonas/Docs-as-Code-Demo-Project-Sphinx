@@ -8,12 +8,6 @@
 	"customizations":{
 		"vscode":{
 			"extensions": [
-				//"ms-vscode.cmake-tools",
-				//"ms-vscode.cpptools",
-				//"twxs.cmake",
-				//"ms-vscode.cpptools-extension-pack",
-				//"vector-of-bool.cmake-tools-helper",
-				//"jeff-hykin.better-cpp-syntax",
 				"mhutchie.git-graph",
 				"hediet.vscode-drawio",
 				"ms-python.python",
@@ -21,9 +15,7 @@
 				"ms-vscode.test-adapter-converter",
 				"hbenl.vscode-test-explorer",
 				"useblocks.ubcode",
-				//obsolete -> "useblocks.sphinx-needs-vscode",
 				"streetsidesoftware.code-spell-checker",
-				//"alefragnani.bookmarks"
 			], 
 			"settings": {
 				"cmake.configureSettings": {
