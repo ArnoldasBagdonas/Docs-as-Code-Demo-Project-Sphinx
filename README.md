@@ -1,6 +1,6 @@
 # Docs-as-Code Demo Project (Using Sphinx)
 
-This repository is an example implementation of a full Docs-as-Code workflow using:
+This repository provides a complete Docs-as-Code example workflow built with:
 
 - Sphinx for documentation.
 - Autodoc for API extraction.
@@ -29,6 +29,8 @@ This repository is used together with the presentation:
 ├── Makefile                         # Full Sphinx build pipeline
 ├── README.md
 ├── ubproject.toml                   # Example build/project metadata
+│
+├── build/                           # Build artifacts (HTML, JSON, doctest output, PDFs)
 │
 ├── docs/                            # All documentation sources
 │   ├── 01_overview.rst              # Intro & problem statement
@@ -99,7 +101,7 @@ Firmware components can be documented using Doxygen and included in Sphinx.
 
 ### sphinx-needs
 
-All specifications, requirements, risks, and system architecture are maintained in the `docs/` folder using [Sphinx](https://www.sphinx-doc.org/) and [`sphinx-needs`](https://sphinx-needs.readthedocs.io/)
+All specifications, requirements, risks, and system architecture are maintained in the `docs/` folder using [Sphinx](https://www.sphinx-doc.org/) and [`sphinx-needs`](https://sphinx-needs.readthedocs.io/).
 
 ### CI-Friendly Makefile
 
@@ -110,7 +112,50 @@ The `Makefile` includes:
 - `make json` → machine-readable documentation
 - `make git-hours` → estimate work time from Git
 
+
+## Getting Started
+
+This project includes a VS Code Development Container, providing a reproducible environment with all toolchains pre-installed.
+
+### 1. Prerequisites
+
+Install the following on your host machine:
+
+- **[Git](https://git-scm.com/downloads)**: For version control.
+- **[Visual Studio Code](https://code.visualstudio.com/download)**: As the code editor.
+- **[Docker Desktop](https://www.docker.com/products/docker-desktop/)**: To build and run the development container.
+
+### 2. Setup
+
+- **Clone the Repository**
+    Open your terminal, navigate to where you want to store the project, and clone it:
+    ```bash
+    git clone https://github.com/useblocks/docs-as-code-demo.git
+    cd docs-as-code-demo
+    ```
+
+- **Open in VS Code**
+    Open the cloned folder in Visual Studio Code:
+    ```bash
+    code .
+    ```
+- **Reopen in Dev Container**
+    VS Code detects the .devcontainer config and prompts you to Reopen in Container.
+    This builds the Docker image and installs all recommended extensions.
+    (First run may take a few minutes.)
+    
+- **Rebuilding the Dev Container**
+    If you change the environment configuration or need to rebuild the container:
+    - Open the Command Palette (Ctrl/Cmd + Shift + P)
+    - Select Dev Containers: Rebuild and Reopen in Container
+    This forces VS Code to rebuild the Docker image and recreate the development environment.
+
+    Once complete, you will be inside the fully configured development environment, ready to work.
+
 ## Build Documentation
+
+With the dev container active, you can run the commands described in this section.  
+All build artifacts: HTML, JSON, doctest results, and PDFs—are generated in the `build/` directory.
 
 ### Build Everything (Doctests + JSON + HTML)
 
