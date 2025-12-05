@@ -64,7 +64,7 @@ This repository is used together with the presentation:
 
 ```
 
-## 📌 Why This Repository Exists
+## Why This Repository Exists
 
 This repository exists **not to showcase the QuadLED device**, but to demonstrate a **complete Docs-as-Code pipeline**, including:
 
@@ -139,6 +139,14 @@ Install the following on your host machine:
     ```bash
     code .
     ```
+
+- **Install Recommended VS Code Extensions**
+    When the project is opened in VS Code, you should install the recommended extensions defined in:
+    ```bash
+    .vscode/extensions.json
+    ```
+    Open the Command Palette (`Ctrl/Cmd + Shift + P`), run **Extensions: Show Recommended Extensions****, and** in the Workspace Recommendations tab click **Install All**. VS Code will automatically install all extensions needed for Sphinx, reStructuredText, Python, linting, Dev Container integration, and other project tools.
+
 - **Reopen in Dev Container**
     VS Code detects the .devcontainer config and prompts you to Reopen in Container.
     This builds the Docker image and installs all recommended extensions.
@@ -152,37 +160,37 @@ Install the following on your host machine:
 
     Once complete, you will be inside the fully configured development environment, ready to work.
 
-## Build Documentation
+### 3. Build Documentation
 
 With the dev container active, you can run the commands described in this section.  
 All build artifacts: HTML, JSON, doctest results, and PDFs—are generated in the `build/` directory.
 
-### Build Everything (Doctests + JSON + HTML)
+#### Build Everything (Doctests + JSON + HTML)
 
 ```
 make all
 ```
 
-### Build Only HTML
+#### Build Only HTML
 
 ```
 make html
 ```
 
-### Build PDF
+#### Build PDF
 
 ```
 make latexpdf
 ```
 
-### Clean Everything
+#### Clean Everything
 
 ```
 make clean
 make clean-gitignore
 ```
 
-### Estimate Development Hours (Docs + Code)
+#### Estimate Development Hours (Docs + Code)
 
 ```
 make git-hours
