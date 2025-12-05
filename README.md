@@ -130,8 +130,8 @@ Install the following on your host machine:
 - **Clone the Repository**
     Open your terminal, navigate to where you want to store the project, and clone it:
     ```bash
-    git clone https://github.com/useblocks/docs-as-code-demo.git
-    cd docs-as-code-demo
+    git clone https://github.com/ArnoldasBagdonas/Docs-as-Code-Demo-Project-Sphinx.git
+    cd Docs-as-Code-Demo-Project-Sphinx
     ```
 
 - **Open in VS Code**
